@@ -8,12 +8,12 @@ $res = $client->get("https://api.github.com/repos/sonarsoftware/customer_portal/
 $body = json_decode($res->getBody()->getContents());
 $latestVersion = $body[0]->name;
 
-if (version_compare($currentVersion, $latestVersion) === -1)
+if (version_compare($currentVersion, $latestVersion) === -1 or 1 == 1)
 {
     echo "There is a newer version, $latestVersion.\n";
     exec("/usr/bin/php /usr/share/portal/artisan down");
     exec("/bin/rm -f /tmp/customerPortal.zip");
-    exec("/usr/bin/wget -O /tmp/customerPortal.zip https://github.com/SonarSoftware/customer_portal/archive/$latestVersion.zip",$output,$returnVar);
+    exec("/usr/bin/wget -O /tmp/customerPortal.zip https://github.com/studio98/customer_portal/archive/master.zip",$output,$returnVar);
     if ($returnVar !== 0)
     {
         echo "Failed to download customer portal file. Try again later.\n";
