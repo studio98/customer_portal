@@ -6,7 +6,7 @@ echo "Checking for new upgrades newer than $currentVersion!\n";
 $client = new GuzzleHttp\Client();
 $res = $client->get("https://api.github.com/repos/sonarsoftware/customer_portal/tags");
 $body = json_decode($res->getBody()->getContents());
-$latestVersion = $body[0]->name;
+$latestVersion = 'master';
 
 if (version_compare($currentVersion, $latestVersion) === -1 or 1 == 1)
 {
